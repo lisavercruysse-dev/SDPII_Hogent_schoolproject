@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../styles/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.sdp.sdp.gui.MainController">
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+            <!-- ── Volledige topbar ── -->
+            <HBox fx:id="topBar" alignment="CENTER_LEFT" managed="false" spacing="12.0" styleClass="top-bar" visible="false">
+                <padding>
+                    <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                </padding>
+
+                <!-- Logo links -->
+                <ImageView fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../images/delaware%20img.png" />
+                    </image>
+                </ImageView>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Gebruikersinfo + avatar -->
+                <StackPane styleClass="avatar-cirkel">
+                    <Label fx:id="lblInitialen" styleClass="avatar-tekst" />
+                </StackPane>
+                <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                    <Label fx:id="lblNaam" styleClass="topbar-naam" />
+                    <Label fx:id="lblJobTitel" styleClass="topbar-jobtitel" />
+                </VBox>
+
+                <!-- Uitlogknop -->
+                <Button fx:id="btnUitloggen" onAction="#handleUitloggen" styleClass="uitlog-button" text="Uitloggen" />
+            </HBox>
+
+            <!-- ── Sidebar + content ── -->
+            <HBox VBox.vgrow="ALWAYS">
+
+                <!-- Sidebar (alleen nav, logo zit nu in topbar) -->
+                <VBox fx:id="sidebarVBox" managed="false" prefWidth="150.0" spacing="5.0" styleClass="sidebar" visible="false">
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                    <ToggleButton fx:id="btnGebruikers" alignment="CENTER_LEFT" styleClass="sidebar-button" text="Gebruikers">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="navGroup" />
+                        </toggleGroup>
+                        <graphic>
+                            <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <image><Image url="@../../images/users-solid.png" /></image>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+                    <ToggleButton fx:id="btnTeams" alignment="CENTER_LEFT" styleClass="sidebar-button" text="Teams" toggleGroup="$navGroup">
+                        <graphic>
+                            <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <image><Image url="@../../images/users-solid.png" /></image>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+                    <ToggleButton fx:id="btnSites" alignment="CENTER_LEFT" styleClass="sidebar-button" text="Sites" toggleGroup="$navGroup">
+                        <graphic>
+                            <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <image><Image url="@../../images/building-3-line.png" /></image>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+
+                    <ToggleButton fx:id="btnMachines" alignment="CENTER_LEFT" styleClass="sidebar-button" text="Machines" toggleGroup="$navGroup">
+                        <graphic>
+                            <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <image><Image url="@../../images/machines.png" /></image>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+               <ToggleButton fx:id="btnTaken" alignment="CENTER_LEFT" mnemonicParsing="false" styleClass="sidebar-button" text="Taken" toggleGroup="$navGroup">
+                  <graphic>
+                     <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../images/clipboard%20(1).png" />
+                        </image></ImageView>
+                  </graphic>
+               </ToggleButton>
+                    <ToggleButton fx:id="btnMeldingen" alignment="CENTER_LEFT" styleClass="sidebar-button" text="Meldingen" toggleGroup="$navGroup">
+                        <graphic>
+                            <ImageView fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <image><Image url="@../../images/bell-solid.png" /></image>
+                            </ImageView>
+                        </graphic>
+                    </ToggleButton>
+                </VBox>
+
+                <!-- Content -->
+                <StackPane fx:id="contentPane" HBox.hgrow="ALWAYS" />
+            </HBox>
+        </VBox>
+
+        <!-- Popup overlay -->
+        <StackPane fx:id="popupContent" mouseTransparent="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    </children>
+</AnchorPane>

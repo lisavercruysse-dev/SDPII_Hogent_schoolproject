@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" type="javafx.scene.layout.StackPane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" maxHeight="400.0" maxWidth="400.0" spacing="40.0" style="-fx-background-color: white;" styleClass="popupContainer" stylesheets="@../../styles/styles.css">
+         <children>
+            <Label fx:id="titleLbl" styleClass="popupTitel" />
+            <Label fx:id="messageLbl" maxWidth="300.0" textAlignment="CENTER" wrapText="true" />
+            <HBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnCloseAction" style="-fx-font-weight: bold;" styleClass="cancelButton" text="Annuleren" />
+                  <Button mnemonicParsing="false" onAction="#btnConfrimAction" style="-fx-font-weight: bold;" styleClass="confirmButton" text="Bevestigen" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding></VBox>
+   </children>
+</fx:root>

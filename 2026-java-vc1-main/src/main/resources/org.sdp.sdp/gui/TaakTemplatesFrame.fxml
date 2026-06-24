@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root style="-fx-background-color: white;" type="VBox" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane stylesheets="@../../styles/styles.css" VBox.vgrow="ALWAYS">
+         <children>
+            <HBox>
+               <children>
+                   <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="templatesTbl" maxHeight="1.7976931348623157E308" styleClass="table" VBox.vgrow="ALWAYS">
+                          <columns>
+                              <TableColumn fx:id="omschrijvingCol" prefWidth="150.0" text="Omschrijving" />
+                            <TableColumn fx:id="typeCol" prefWidth="150.0" text="Type" />
+                            <TableColumn fx:id="duurTijdCol" prefWidth="150.0" text="Duurtijd" />
+                              <TableColumn fx:id="statusCol" prefWidth="75.0" text="Status" />
+                              <TableColumn fx:id="btnCol" prefWidth="75.0">
+                                 <graphic>
+                                    <Button mnemonicParsing="false" onAction="#resetFilters" styleClass="resetBtn" text="↻ Reset" />
+                                 </graphic></TableColumn>
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children></VBox>
+                  <VBox alignment="TOP_CENTER" prefWidth="400.0" spacing="20.0" styleClass="rightPanelForm">
+                     <children>
+                        <VBox>
+                           <children>
+                              <Label fx:id="formTitel" styleClass="h2" text="Template Toevoegen" />
+                              <Label style="-fx-font-size: 11; -fx-text-fill: gray;" text="Velden met een * zijn verplicht" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Type *" />
+                              <ComboBox fx:id="typeCombo" editable="true" prefHeight="27.0" prefWidth="667.0" promptText="--Selecteer een type--" />
+                              <Label fx:id="typeError" styleClass="error" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Omschrijving*" />
+                              <TextArea fx:id="omschrijvingInput" prefHeight="100.0" promptText="Omschrijving..." styleClass="inputField" wrapText="true" />
+                              <Label fx:id="omschrijvingError" styleClass="error" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="5.0">
+                           <children>
+                              <Label text="Duurtijd*" />
+                              <TextField fx:id="duurTijdInput" promptText="15" styleClass="inputField" />
+                              <Label fx:id="duurTijdError" styleClass="error" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="TOP_CENTER" spacing="15.0">
+                           <children>
+                              <Button fx:id="annuleerEditBtn" mnemonicParsing="false" onAction="#onAnnuleerEdit" styleClass="cancelButton" text="Annuleren" />
+                              <Button fx:id="toevoegenBtn" mnemonicParsing="false" onAction="#onToevoegen" style="-fx-font-weight: bold;" styleClass="confirmButton" text="Toevoegen" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding></VBox>
+               </children></HBox>
+         </children></StackPane>
+   </children>
+</fx:root>

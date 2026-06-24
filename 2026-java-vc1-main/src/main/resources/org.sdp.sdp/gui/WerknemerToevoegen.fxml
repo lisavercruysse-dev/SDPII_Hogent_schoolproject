@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane maxHeight="600.0" minHeight="100.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" maxHeight="600.0" maxWidth="300.0" spacing="20.0" style="-fx-background-color: white;" styleClass="popupContainer" stylesheets="@../../styles/styles.css">
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <children>
+            <Label styleClass="popupTitel" text="Werknemer Toevoegen" />
+            <Label alignment="TOP_CENTER" minHeight="-Infinity" prefWidth="229.0" style="-fx-font-size: 11; -fx-text-fill: gray;" text="Selecteer werknemers om aan het team toe te voegen" textAlignment="CENTER" wrapText="true" VBox.vgrow="NEVER" />
+            <VBox prefWidth="100.0" spacing="5.0">
+               <children>
+                  <Label text="Filter werknemers" />
+                  <TextField fx:id="filterInput" promptText="Filter..." styleClass="inputField" />
+               </children>
+            </VBox>
+            <ListView fx:id="werknemersListView" maxHeight="180.0" prefHeight="180.0" />
+            <Label fx:id="werknemerError" styleClass="error" />
+            <HBox alignment="TOP_CENTER" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#btnCloseAction" styleClass="cancelButton" text="Annuleren" />
+                  <Button mnemonicParsing="false" onAction="#btnConfirmAction" style="-fx-font-weight: bold;" styleClass="confirmButton" text="Toevoegen" />
+               </children></HBox>
+         </children>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin></VBox>
+   </children>
+</StackPane>

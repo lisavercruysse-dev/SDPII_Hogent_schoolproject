@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fitToWidth="true" style="-fx-background: white; -fx-background-color: white;" type="ScrollPane" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <HBox style="-fx-background-color: white;" stylesheets="@../../styles/styles.css" HBox.hgrow="ALWAYS">
+            <children>
+                <!-- ══ LINKER KOLOM: tabel + details ══ -->
+                <javafx.scene.layout.VBox HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label styleClass="page-titel" text="Beheer sites">
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </Label>
+                        <!-- Tabel -->
+                        <TableView fx:id="tblSites" prefHeight="400.0" style="-fx-border-color: #E5E5E5; -fx-border-width: 1 0 0 0;" styleClass="table" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="nameCol" prefWidth="65.0" text="Naam" />
+                                <TableColumn fx:id="locatieCol" prefWidth="60.0" text="Locatie" />
+                                <TableColumn fx:id="landCol" prefWidth="60.0" text="Land" />
+                                <TableColumn fx:id="capaciteitCol" text="Capaciteit" />
+                                <TableColumn fx:id="operationeleStatusCol" prefWidth="100.0" text="Operationele Status" />
+                                <TableColumn fx:id="productieStatusCol" prefWidth="100.0" text="Productie Status" />
+                                <!-- Actie-kolom (edit + delete knoppen) -->
+                                <TableColumn fx:id="actieCol" maxWidth="100.0" minWidth="60.0" prefWidth="60.0">
+                                    <graphic>
+                                        <Button alignment="CENTER" contentDisplay="CENTER" onAction="#resetFilters" styleClass="resetBtn" text="↻ Reset&#10;" />
+                                    </graphic>
+                                </TableColumn>
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+
+                        <!-- Details box -->
+                        <VBox style="-fx-border-color: #E5E5E5; -fx-border-width: 1 0 0 0;">
+                            <padding>
+                                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                            </padding>
+                            <children>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 14px;" text="Site Details">
+                                    <VBox.margin><Insets bottom="15.0" /></VBox.margin>
+                                </Label>
+
+                                <!-- Lege staat -->
+                                <VBox fx:id="boxGeenDetails" alignment="CENTER" prefHeight="130.0" spacing="10.0">
+                                     <ImageView fitHeight="250.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                           <Image url="@../../images/empty%20box.png" />
+                                        </image>
+                                     </ImageView>
+                                    <Label styleClass="h2" text="Geen Details" />
+                                    <Label style="-fx-text-fill: #808080;" text="Selecteer een site in de lijst om de details te zien." />
+                                </VBox>
+
+                                <!-- Detail-raster (verborgen totdat een rij geselecteerd is) -->
+                                <GridPane fx:id="boxWelDetails" hgap="40.0" managed="false" vgap="10.0" visible="false">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                    </columnConstraints>
+                                    <children>
+                                        <!-- Kolom 0 – Algemeen -->
+                                        <Label style="-fx-font-weight: bold;" text="Algemeen" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Naam" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblDetailName" text="..." GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Locatie" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                        <Label fx:id="lblDetailLocatie" text="..." GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Land" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                                        <Label fx:id="lblDetailLand" text="..." GridPane.columnIndex="0" GridPane.rowIndex="6" />
+
+                                        <!-- Kolom 1 – Capaciteit & Status -->
+                                        <Label style="-fx-font-weight: bold;" text="Capaciteit &amp; Status" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Capaciteit" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblDetailCapaciteit" text="..." GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Operationele Status" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <Label fx:id="lblDetailOperationeleStatus" text="..." GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                        <!-- Kolom 2 – Productie -->
+                                        <Label style="-fx-font-weight: bold;" text="Productie" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Productie Status" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblDetailProductieStatus" text="..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+                                        <!-- Kolom 3 – Coördinaten -->
+                                        <Label style="-fx-font-weight: bold;" text="Coördinaten" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Breedtegraad" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                        <Label fx:id="lblDetailBreedtegraad" text="..." GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                        <Label style="-fx-font-weight: bold; -fx-text-fill: gray; -fx-font-size: 11px;" text="Lengtegraad" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                        <Label fx:id="lblDetailLengtegraad" text="..." GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    </children>
+                                     <rowConstraints>
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                     </rowConstraints>
+                                </GridPane>
+                            </children>
+                        </VBox>
+
+                    </children>
+                </javafx.scene.layout.VBox>
+
+                <!-- ══ RECHTER KOLOM: gecombineerde toevoegen / wijzigen form ══ -->
+                <VBox alignment="TOP_CENTER" prefWidth="400.0" spacing="20.0" styleClass="rightPanelForm">
+                    <children>
+
+                        <!-- Dynamische header: titel wisselt tussen "Toevoegen" en "Wijzigen" -->
+                        <VBox spacing="5.0">
+                             <children>
+                                 <Label fx:id="lblFormTitel" styleClass="h2" text="Site Toevoegen" />
+                                 <Label text="Velden met een * zijn verplicht." />
+                             </children>
+                        </VBox>
+
+                        <!-- Formuliervelden -->
+                        <VBox spacing="10.0">
+                            <children>
+                                <VBox spacing="5.0">
+                                    <Label text="Naam *" />
+                                    <TextField fx:id="nameInput" promptText="naam" styleClass="inputField" />
+                                    <Label fx:id="naamError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Locatie *" />
+                                    <TextField fx:id="locatieInput" promptText="bijv. Gent" styleClass="inputField" />
+                                    <Label fx:id="locatieError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Land *" />
+                                    <TextField fx:id="landInput" promptText="bijv. België" styleClass="inputField" />
+                                    <Label fx:id="landError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Capaciteit *" />
+                                    <TextField fx:id="capaciteitInput" promptText="bijv. 100" styleClass="inputField" />
+                                    <Label fx:id="capaciteitError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Operationele Status *" />
+                                    <ComboBox fx:id="cmbOperationeleStatus" maxWidth="Infinity" styleClass="inputField" />
+                                    <Label fx:id="operationeleStatusError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Productie Status *" />
+                                    <ComboBox fx:id="cmbProductieStatus" maxWidth="Infinity" styleClass="inputField" />
+                                    <Label fx:id="productieStatusError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Coördinaten" style="-fx-font-weight: bold;"/>
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Breedtegraad *" />
+                                    <TextField fx:id="breedtegraadInput" promptText="br. (-90 / 90)" styleClass="inputField" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="breedtegraadError" styleClass="error" />
+                                </VBox>
+                                <VBox spacing="5.0">
+                                    <Label text="Lengtegraad *" />
+                                    <TextField fx:id="lengtegraadInput" promptText="le. (-180 / 180)" styleClass="inputField" HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="lengtegraadError" styleClass="error" />
+                                </VBox>
+
+                            </children>
+                        </VBox>
+
+                        <!-- Knoppen: "Toevoegen" zichtbaar in toevoegen-modus,
+                                      "Opslaan" + "Annuleren" in wijzigen-modus -->
+                        <Button fx:id="btnToevoegen" onAction="#btnToevoegenAction" style="-fx-font-weight: bold;" styleClass="confirmButton" text="Toevoegen" />
+
+                        <HBox fx:id="hboxWijzigenKnoppen" managed="false" spacing="10.0" visible="false">
+                            <children>
+                                <Button maxWidth="Infinity" onAction="#btnOpslaanWijzigAction"
+                                        style="-fx-background-color: #4a6ee0; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 0; -fx-background-radius: 4;"
+                                        text="Opslaan" HBox.hgrow="ALWAYS" />
+                                <Button maxWidth="Infinity" onAction="#btnAnnulerenWijzig"
+                                        style="-fx-padding: 8 0; -fx-background-radius: 4;"
+                                        text="Annuleren" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </HBox>
+    </content>
+</fx:root>

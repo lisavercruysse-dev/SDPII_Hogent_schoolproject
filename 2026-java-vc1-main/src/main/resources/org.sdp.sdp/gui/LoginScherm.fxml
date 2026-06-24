@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="VBox" alignment="CENTER" spacing="0"
+         stylesheets="@../../styles/styles.css"
+         xmlns="http://javafx.com/javafx/17.0.12"
+         xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Centrerende wrapper -->
+    <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
+
+        <!-- Login-kaart -->
+        <VBox alignment="CENTER" spacing="20.0" styleClass="login-card" maxWidth="400.0">
+            <padding>
+                <Insets top="40.0" right="40.0" bottom="40.0" left="40.0"/>
+            </padding>
+
+            <!-- Logo -->
+            <ImageView fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../images/delaware.png"/>
+                </image>
+            </ImageView>
+
+            <!-- Titel -->
+            <Label text="Aanmelden" styleClass="login-title"/>
+
+            <!-- E-mail -->
+            <VBox spacing="5.0">
+                <Label text="E-mailadres" styleClass="form-label"/>
+                <TextField fx:id="txtEmail" promptText="voornaam.achternaam@example.com"
+                           styleClass="form-input" maxWidth="320.0"/>
+            </VBox>
+
+            <!-- Wachtwoord -->
+            <VBox spacing="5.0">
+                <Label text="Wachtwoord" styleClass="form-label"/>
+                <PasswordField fx:id="txtWachtwoord" promptText="••••••••"
+                               styleClass="form-input" maxWidth="320.0"/>
+            </VBox>
+
+            <!-- Foutmelding -->
+            <Label fx:id="lblFout" styleClass="error-label" wrapText="true" maxWidth="320.0"/>
+
+            <!-- Login-knop -->
+            <Button text="Inloggen" styleClass="primary-button"
+                    maxWidth="320.0" onAction="#handleLogin"/>
+        </VBox>
+    </VBox>
+</fx:root>

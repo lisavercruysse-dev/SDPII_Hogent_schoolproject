@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true"
+            stylesheets="@../../styles/styles.css"
+            style="-fx-background-color: white; -fx-background: white;"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.sdp.sdp.gui.MeldingenControllerGUI">
+    <content>
+        <VBox spacing="16.0" style="-fx-background-color: white;" maxWidth="Infinity">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+
+            <!-- Paginatitel -->
+            <Label styleClass="page-titel" text="Meldingen" />
+            <Label styleClass="sectieInfo" text="Blijf up-to-date met al uw meldingen." />
+
+            <!-- Banner ongelezen meldingen -->
+            <HBox fx:id="ongelezeBanner" alignment="CENTER_LEFT" spacing="12.0"
+                  styleClass="melding-banner" managed="false" visible="false">
+                <padding>
+                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                </padding>
+                <VBox alignment="CENTER" styleClass="melding-banner-icon">
+                    <children>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" preserveRatio="true">
+                            <image>
+                                <Image url="@../../images/bell-solid.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </VBox>
+                <Label fx:id="bannerLabel" text="Je hebt 0 ongelezen meldingen"
+                       style="-fx-font-size: 13;" />
+            </HBox>
+
+            <!-- Filterbalk -->
+            <VBox styleClass="melding-card-container">
+                <padding>
+                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                </padding>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <Label text="⊟" style="-fx-font-size: 18; -fx-text-fill: #888;" />
+                    <ComboBox fx:id="statusFilter" prefWidth="180.0" />
+                    <ComboBox fx:id="typeFilter" prefWidth="180.0" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button onAction="#markeerAllesAlsGelezen"
+                            styleClass="mark-all-read-btn"
+                            text="✓  Alles als gelezen markeren" />
+                </HBox>
+            </VBox>
+
+            <!-- Lijst van meldingen -->
+            <VBox styleClass="melding-card-container">
+                <padding>
+                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+                </padding>
+                <Label fx:id="meldingenHeader" styleClass="h3" text="Meldingen (0)" />
+                <VBox fx:id="meldingenContainer" spacing="10.0">
+                    <padding>
+                        <Insets top="12.0" />
+                    </padding>
+                </VBox>
+            </VBox>
+
+        </VBox>
+    </content>
+</ScrollPane>
+

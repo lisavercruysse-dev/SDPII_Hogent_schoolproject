@@ -1,0 +1,6 @@
+package util;
+
+public enum WerknemerElement {
+    VOORNAAM, ACHTERNAAM, JOBTITEL, TELEFOON, GEBOORTEDATUM,
+    LAND, POSTCODE, STAD, STRAAT, HUISNUMMER, BUS
+}
